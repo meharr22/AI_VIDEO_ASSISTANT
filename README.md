@@ -1,25 +1,25 @@
-# 🎬 AI Video Assistant
+#  AI Video Assistant
 
 An AI-powered video and meeting intelligence assistant that can **transcribe, summarize, extract insights, and answer questions from video or audio content using Retrieval-Augmented Generation (RAG)**.
 
 The application accepts a **YouTube URL or local media file**, processes the audio, generates a transcript, extracts structured meeting insights, and allows users to chat with the content through a modern Streamlit interface.
 
-## ✨ Features
+##  Features
 
-- 🎥 **YouTube & Local File Processing** — Analyse YouTube videos or local audio/video files.
-- 🔊 **Automatic Audio Processing** — Downloads, converts, and chunks audio for transcription.
-- 📝 **Local Speech-to-Text** — Uses OpenAI Whisper for transcription.
-- 🌐 **English & Hinglish Workflow** — Select the language mode from the application sidebar.
-- 🏷️ **AI Title Generation** — Generates a contextual title from the transcript.
-- 📋 **AI Summarization** — Produces a concise summary of the processed content.
-- ✅ **Action Item Extraction** — Identifies actionable tasks from conversations.
-- 🔑 **Key Decision Extraction** — Extracts important decisions discussed in the content.
-- ❓ **Open Question Extraction** — Detects unresolved or important questions.
-- 🧠 **RAG-Based Chat** — Ask questions directly about the processed transcript.
-- 💬 **Chat History** — Maintains the current question-answer conversation in the Streamlit session.
-- 🌑 **Modern Streamlit UI** — Dark, responsive interface with live pipeline status.
+-  **YouTube & Local File Processing** — Analyse YouTube videos or local audio/video files.
+-  **Automatic Audio Processing** — Downloads, converts, and chunks audio for transcription.
+-  **Local Speech-to-Text** — Uses OpenAI Whisper for transcription.
+-  **English & Hinglish Workflow** — Select the language mode from the application sidebar.
+-  **AI Title Generation** — Generates a contextual title from the transcript.
+-  **AI Summarization** — Produces a concise summary of the processed content.
+-  **Action Item Extraction** — Identifies actionable tasks from conversations.
+-  **Key Decision Extraction** — Extracts important decisions discussed in the content.
+-  **Open Question Extraction** — Detects unresolved or important questions.
+-  **RAG-Based Chat** — Ask questions directly about the processed transcript.
+-  **Chat History** — Maintains the current question-answer conversation in the Streamlit session.
+-  **Modern Streamlit UI** — Dark, responsive interface with live pipeline status.
 
-## 🧠 How It Works
+##  How It Works
 
 ```text
 YouTube URL / Local Media File
@@ -53,7 +53,7 @@ YouTube URL / Local Media File
        RAG-Based Chat
 ```
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Technology | Purpose |
 | --- | --- |
@@ -70,7 +70,7 @@ YouTube URL / Local Media File
 | PyTorch | Whisper backend |
 | python-dotenv | Environment variable management |
 
-## 📁 Project Structure
+##  Project Structure
 
 ```text
 AI_VIDEO_ASSISTANT/
@@ -94,7 +94,7 @@ AI_VIDEO_ASSISTANT/
 
 
 
-## ⚙️ Installation
+##  Installation
 
 ### 1. Clone the repository
 
@@ -145,7 +145,7 @@ MISTRAL_API_KEY=your_mistral_api_key
 ```
 
 
-## 🚀 Run the Application
+##  Run the Application
 
 Start the Streamlit application:
 
@@ -155,7 +155,7 @@ streamlit run app.py
 
 Open the local Streamlit URL shown in the terminal, enter a YouTube URL or local file path, choose the language mode, and click **Analyse**.
 
-## 💻 CLI Mode
+##  CLI Mode
 
 The project also includes a command-line pipeline:
 
@@ -165,7 +165,7 @@ python main.py
 
 The CLI processes the input, prints the generated title, summary, action items, key decisions, and open questions, and then starts an interactive RAG chat session.
 
-## 🔍 RAG Pipeline
+##  RAG Pipeline
 
 The Retrieval-Augmented Generation pipeline follows these steps:
 
@@ -178,7 +178,7 @@ The Retrieval-Augmented Generation pipeline follows these steps:
 
 This allows users to **chat with the content of a meeting or video instead of asking a model to answer without transcript context**.
 
-## 🎯 Use Cases
+##  Use Cases
 
 - Meeting intelligence
 - Lecture and educational video analysis
@@ -189,7 +189,7 @@ This allows users to **chat with the content of a meeting or video instead of as
 - Action-item tracking
 - Question answering over long-form video content
 
-## 👩‍💻 Author
+##  Author
 
 **Mehar Arora**
 
