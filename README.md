@@ -4,6 +4,10 @@ An AI-powered video and meeting intelligence assistant that can **transcribe, su
 
 The application accepts a **YouTube URL or local media file**, processes the audio, generates a transcript, extracts structured meeting insights, and allows users to chat with the content through a modern Streamlit interface.
 
+##  Live Demo
+
+ [Launch AI Video Assistant](https://aivideoassistant-avd.streamlit.app/)
+
 ##  Features
 
 -  **YouTube & Local File Processing** — Analyse YouTube videos or local audio/video files.
