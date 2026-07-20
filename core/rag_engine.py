@@ -31,7 +31,7 @@ def build_rag_chain(transcript:str):
 based ONLY on the meeting transcript context provided below.
 
 If the answer is not found in the context, say: 
-"I could not find this information in the meeting transcript."
+"I could not find this information in the  meeting transcript."
 
 Always be concise and precise. If quoting someone, mention it clearly.
 

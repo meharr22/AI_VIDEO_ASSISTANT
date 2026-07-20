@@ -377,110 +377,33 @@ if run_btn:
 
         try:
             with progress_placeholder.container():
-                st.info("Pipeline running — see sidebar for live status…")
+                st.info("⚙️ Pipeline running — see sidebar for live status…")
 
-            # ─────────────────────────────────────────
-            # TRANSCRIPTION
-            # ─────────────────────────────────────────
+            update_step("audio", "active")
+            chunks = process_input(source)
+            update_step("audio", "done")
 
-            if source.startswith("http://") or source.startswith("https://"):
-
-                update_step("audio", "active")
-
-                try:
-                    print("Trying direct YouTube transcript...")
-
-                    transcript = get_youtube_transcript(source)
-
-                    print("YouTube transcript fetched successfully.")
-
-                    update_step("audio", "done")
-
-                    update_step("transcript", "active")
-                    update_step("transcript", "done")
-
-                except Exception as transcript_error:
-                    print(
-                        f"Direct YouTube transcript unavailable: "
-                        f"{transcript_error}"
-                    )
-
-                    print("Falling back to audio + Whisper...")
-
-                    chunks = process_input(source)
-
-                    update_step("audio", "done")
-
-                    update_step("transcript", "active")
-
-                    transcript = transcribe_all(
-                        chunks,
-                        language
-                    )
-
-                    update_step("transcript", "done")
-
-            else:
-                update_step("audio", "active")
-
-                chunks = process_input(source)
-
-                update_step("audio", "done")
-
-                update_step("transcript", "active")
-
-                transcript = transcribe_all(
-                    chunks,
-                    language
-                )
-
-                update_step("transcript", "done")
-
-            # ─────────────────────────────────────────
-            # TITLE GENERATION
-            # ─────────────────────────────────────────
+            update_step("transcript", "active")
+            transcript = transcribe_all(chunks, language)
+            update_step("transcript", "done")
 
             update_step("title", "active")
-
             title = generate_title(transcript)
-
             update_step("title", "done")
 
-            # ─────────────────────────────────────────
-            # SUMMARIZATION
-            # ─────────────────────────────────────────
-
             update_step("summary", "active")
-
             summary = summarize(transcript)
-
             update_step("summary", "done")
 
-            # ─────────────────────────────────────────
-            # INSIGHT EXTRACTION
-            # ─────────────────────────────────────────
-
             update_step("extract", "active")
-
-            action_items = extract_action_items(transcript)
-            decisions = extract_key_decisions(transcript)
-            questions = extract_questions(transcript)
-
+            action_items  = extract_action_items(transcript)
+            decisions     = extract_key_decisions(transcript)
+            questions     = extract_questions(transcript)
             update_step("extract", "done")
 
-            # ─────────────────────────────────────────
-            # RAG PIPELINE
-            # ─────────────────────────────────────────
-
             update_step("rag", "active")
-
             rag_chain = build_rag_chain(transcript)
-
             update_step("rag", "done")
-
-            # ─────────────────────────────────────────
-            # SAVE RESULTS
-            # ─────────────────────────────────────────
 
             st.session_state.result = {
                 "title": title,
@@ -491,36 +414,18 @@ if run_btn:
                 "open_questions": questions,
                 "rag_chain": rag_chain,
             }
-
             st.session_state.pipeline_done = True
-
-            progress_placeholder.success("Analysis complete!")
-
+            progress_placeholder.success("✅ Analysis complete!")
             time.sleep(0.5)
-
             progress_placeholder.empty()
-
             st.rerun()
 
         except Exception as e:
-
-            for k in [
-                "audio",
-                "transcript",
-                "title",
-                "summary",
-                "extract",
-                "rag"
-            ]:
-                if (
-                    st.session_state.pipeline_steps.get(k)
-                    == "active"
-                ):
+            for k in ["audio","transcript","title","summary","extract","rag"]:
+                if st.session_state.pipeline_steps.get(k) == "active":
                     st.session_state.pipeline_steps[k] = "pending"
+            progress_placeholder.error(f"❌ Error: {e}")
 
-            progress_placeholder.error(
-                f"Error: {e}"
-            )
 # ── Results ──────────────────────────────────────────────────────────────────────
 if st.session_state.result:
     r = st.session_state.result
